@@ -2,21 +2,10 @@
 {% load static %}
 
 
-{% block title %} {{ title }} :: {{ block.super  }} {% endblock %}
+{% block title %} Поиск :: {{ block.super  }} {% endblock %}
 
 {% block content %}
-<section class="bg-text-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="bg-text">
-                    <h3>Блог для всех и никого</h3>
-                    <p>Человек – это канат, натянутый между животным и сверхчеловеком, – канат над пропастью.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+ 
 <section class="blog-post-area">
     <div class="container">
         <div class="row">
@@ -27,10 +16,10 @@
                                 <img src="{% static 'img/baseArs.jpg' %}" alt="">
                             </div>
                             <div class="big-text">
-                                <h3><a href="#">Блог мистера Фуркаса</a></h3>
-                                <p>Пару слов обо мне. </p>
-                                <p>Делаю разные вещи </p>
-                                <h4><span class="date">14.06.2021</span><span class="author">Posted By: <span class="author-name">Фуркас</span></span>
+                                <h3><a href="#">Блог для всех и никого</a></h3>
+                                <p>Властвует над страстями не тот, кто совсем воздерживается от них, но тот, кто пользуется ими так, как управляют кораблем или конем, то есть направляет их туда, куда нужно и полезно.</p>
+                                <p>Благо везде и повсюду зависит от соблюдения двух условий: правильного установления конечных целей и отыскания соответствующих средств, ведущих к конечной цели.</p>
+                                <h4><span class="date">384 BC - 322 BC   </span><span class="author">Posted By: <span class="author-name">Аристотель</span></span>
                                 </h4>
                             </div>
                         </div>
@@ -53,6 +42,8 @@
                             <h4><span>{{post.created_at|date:"d.m.Y"}}</span></h4>
                         </div>
                     </div>
+                    {% empty %}
+                    <p> По вашему запросу ничего не найдено</p>
                     {% endfor %}
             </div>
         </div>
@@ -65,12 +56,12 @@
                 {% if page_obj.number == p %}
                 <span class="page-numbers current">{{ p }}</span>
                 {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
-                <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+                <a class="page-numbers" href="?{{ s }}page={{ p }}">{{ p }}</a>
                 {% endif %}
             {% endfor %}
             
             {% if page_obj.has_next %}
-            <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a class="page-numbers" href="?{{ s }}page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
             {% endif %}
 
              
